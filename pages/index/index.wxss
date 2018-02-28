@@ -1,0 +1,44 @@
+/**index.wxss**/
+.house-list {
+  width: 750rpx;
+  height: 100%;
+  overflow: hidden;
+  background: rgba(0,0,0,0.5);
+}
+.house-scroll {
+  margin-top:150rpx;
+  height: 900rpx;
+  transition: all 0.5s;
+}
+
+.house-li {
+  float: left;
+  width: 600rpx;
+  height: 900rpx;
+  margin-right: 45rpx;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 10rpx;
+  transition: all 0.5s;
+}
+
+.normal-position {
+  transform: translate3d(-325rpx,0,0);
+}
+
+.simple-postion {
+  transform: translate3d(100rpx,0,0);
+}
+.moveAnimation {
+  animation: move 0.5s;
+}
+
+@keyframes move{
+  0% {
+    transform: translate3d(0, 0, 0);
+  } 
+  100% {
+    transform: translate3d(0, -100%, 0);
+    opacity: 0;
+  }
+}

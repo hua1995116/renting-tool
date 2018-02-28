@@ -1,0 +1,6 @@
+.house-list {
+  width: 100rpx;
+  height: 100rpx;
+  background: #000;
+  border: 1rpx solid #ddd;
+}
