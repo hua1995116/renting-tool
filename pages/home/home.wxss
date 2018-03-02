@@ -1,0 +1,57 @@
+.evaluate-content {
+    width: 100%;
+    height: 150rpx;
+    position: absolute;
+    bottom: 0;
+    background:#fed700;
+    color: #333;
+    text-align: center;
+    font-weight: 700;
+    line-height: 150rpx;
+}
+
+.house-create-list {
+    width: 700rpx;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.house-create__img {
+    width: 150rpx;
+    height: 150rpx;
+}
+
+.house-create__item {
+    width: 180rpx;
+    height: 180rpx;
+    border: 1rpx solid #000;
+    border-radius: 15rpx;
+}
+
+.create-add {
+    display: block;
+    width: 180rpx;
+    height: 180rpx;
+    position: relative;
+}
+
+.create-add__left {
+    position: absolute;
+    width: 150rpx;
+    height: 75rpx;
+    border-bottom: 1rpx solid #000;
+    left: 15rpx;
+    top: 15rpx;
+    background: transparent;
+}
+
+.create-add__right {
+    position: absolute;
+    height: 150rpx;
+    width: 75rpx;
+    background: transparent;
+    left: 15rpx;
+    top: 15rpx;
+    border-right: 1rpx solid #000;
+}
