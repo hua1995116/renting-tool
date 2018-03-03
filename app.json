@@ -2,7 +2,8 @@
   "pages":[
     "pages/home/home",
     "pages/logs/logs",
-    "pages/index/index"
+    "pages/index/index",
+    "pages/createhouse/createhouse"
   ],
   "window":{
     "backgroundTextStyle":"light",

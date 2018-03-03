@@ -55,3 +55,7 @@
     top: 15rpx;
     border-right: 1rpx solid #000;
 }
+
+.hover-btn-tran {
+    background: rgb(12, 226, 41);
+}

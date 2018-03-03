@@ -1,0 +1,5 @@
+<view class="create-house"> 
+    <view>
+        <input placeholder="这是一个可以自动聚焦的input" />
+    </view>
+</view>

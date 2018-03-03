@@ -1,10 +1,12 @@
 <view class="home-page">
     <view class="house-create-list">
         <view class="house-create__item">
-            <view class="create-add">
-                <view class="create-add__left"></view>
-                <view class="create-add__right"></view>
-            </view>
+            <navigator url="../createhouse/createhouse" open-type="navigateTo">
+                <view class="create-add">
+                    <view class="create-add__left"></view>
+                    <view class="create-add__right"></view>
+                </view>
+            </navigator>
         </view>
         <view class="house-create__item">
 
@@ -13,7 +15,7 @@
                 
         </view>
     </view>
-    <view class="evaluate-content">
+    <button class="evaluate-content" hover-class="hover-btn-tran">
         开始评价
-    </view>
+    </button>
 </view>
