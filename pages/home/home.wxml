@@ -11,6 +11,7 @@
         <view class="house-create__item" wx:for="{{listData}}">
             {{item.location}}
         </view>
+        <view class="clearfix"></view>
     </view>
     <button class="evaluate-content" hover-class="hover-btn-tran">
         开始评价

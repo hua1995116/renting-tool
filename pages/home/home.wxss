@@ -11,10 +11,10 @@
 }
 
 .house-create-list {
-    width: 700rpx;
+    width: 690rpx;
     margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
+    /* display: flex;
+    justify-content: space-between; */
 }
 
 .house-create__img {
@@ -23,10 +23,13 @@
 }
 
 .house-create__item {
-    width: 180rpx;
-    height: 180rpx;
+    width: 200rpx;
+    height: 200rpx;
+    margin: 0 10rpx 40rpx 10rpx;
     border: 1rpx solid #000;
     border-radius: 15rpx;
+    box-sizing: border;
+    float: left;
 }
 
 .create-add {
@@ -41,8 +44,8 @@
     width: 150rpx;
     height: 75rpx;
     border-bottom: 1rpx solid #000;
-    left: 15rpx;
-    top: 15rpx;
+    left: 20rpx;
+    top: 20rpx;
     background: transparent;
 }
 
@@ -51,8 +54,8 @@
     height: 150rpx;
     width: 75rpx;
     background: transparent;
-    left: 15rpx;
-    top: 15rpx;
+    left: 20rpx;
+    top: 20rpx;
     border-right: 1rpx solid #000;
 }
 
