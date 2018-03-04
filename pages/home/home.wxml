@@ -8,11 +8,8 @@
                 </view>
             </navigator>
         </view>
-        <view class="house-create__item">
-
-        </view>
-        <view class="house-create__item">
-                
+        <view class="house-create__item" wx:for="{{listData}}">
+            {{item.location}}
         </view>
     </view>
     <button class="evaluate-content" hover-class="hover-btn-tran">

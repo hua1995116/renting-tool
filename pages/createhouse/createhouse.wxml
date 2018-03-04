@@ -1,5 +1,42 @@
 <view class="create-house"> 
-    <view>
-        <input placeholder="这是一个可以自动聚焦的input" />
-    </view>
+    <form bindsubmit="formSubmit">
+        <view class="create-house__innher">
+            <view class="create-house__item">
+                <view class="create-label">
+                    选择地址
+                </view>
+                <view class="create-content" bind:tap="bindLocation">
+                    <input name="location" value="{{location}}" />
+                </view>
+            </view>
+            <view class="create-house__item"> 
+                <view class="create-label">
+                    联系电话
+                </view>
+                <view class="create-input">
+                    <input name="iphone" value="{{iphone}}" />
+                </view>
+            </view>
+            <view class="create-house__item"> 
+                <view class="create-label">
+                    查看日期
+                </view>
+                <view class="create-input">
+                    <picker mode="date" value="{{date}}" bindchange="bindDateChange" class="create-date" name="date">
+                        <view class="create-date">
+                            {{date}}
+                        </view>
+                    </picker>
+                </view>
+            </view>
+            <checkbox-group class="create-check__group clearfix" name="facility">
+                <label class="create-checkbox" wx:for="{{items}}" wx:key="{{item.name}}">
+                    <checkbox  value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+                </label>
+            </checkbox-group>
+            <view class="clearfix"></view>
+        </view>
+        <button class="create-submit" formType="submit" hover-class="hover-btn-tran">创建</button>
+    </form>
+    
 </view>

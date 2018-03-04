@@ -13,3 +13,13 @@ page {
   justify-content: space-between;
   box-sizing: border-box;
 } 
+
+.clearfix {
+  clear: both;
+}
+
+.clearfix::after {
+  display: block;
+  height: 0;
+  clear: both;
+}
