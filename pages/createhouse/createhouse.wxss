@@ -54,7 +54,7 @@
     height: 250rpx;
     margin-top: 200rpx;
     background: #fed700;
-    border-radius: 50%;
+    border-radius: 100%;
     display: flex;
     justify-content: center;
     align-items: center;

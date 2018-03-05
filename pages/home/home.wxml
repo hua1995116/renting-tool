@@ -7,9 +7,11 @@
                     <view class="create-add__right"></view>
                 </view>
             </navigator>
-        </view>
+        </view>  
         <view class="house-create__item" wx:for="{{listData}}">
-            {{item.location}}
+            <navigator url="../index/index?index={{index}}" open-type="navigateTo">
+                {{item.location}}
+            </navigator>
         </view>
         <view class="clearfix"></view>
     </view>
