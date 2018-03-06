@@ -2,8 +2,10 @@
 <view class="container">
   <view catch:touchstart="bindtouchstart" catch:touchmove="bindtouchmove" catch:touchend="bindtouchend" class="house-list">
     <view class="house-scroll {{listData.length > 1 ? 'normal-position': 'simple-position'}}" style="width:{{700*listData.length}}rpx;transform:translate3d({{moveLength}}rpx,0,0)">
-      <view wx:for="{{listData}}" wx:key="index" class="house-li {{moveIndex === index ? 'moveAnimation': ''}}" >
-        {{index}}:{{item.name}}
+      <view wx:for="{{listData}}" wx:key="index" class="house-li {{removeIndex === index ? 'moveAnimation': ''}}" >
+        <text>地址:{{item.location}}</text>
+        <text>电话:{{item.iphone}}</text>
+        <text>日期:{{item.date}}</text>
       </view>
     </view>
   </view>

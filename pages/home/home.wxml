@@ -8,7 +8,7 @@
                 </view>
             </navigator>
         </view>  
-        <view class="house-create__item" wx:for="{{listData}}">
+        <view class="house-create__item" wx:for="{{listData}}" wx:key="{{index}}">
             <navigator url="../index/index?index={{index}}" open-type="navigateTo">
                 {{item.location}}
             </navigator>
