@@ -10,6 +10,13 @@
     line-height: 150rpx;
 }
 
+.house-create__title {
+    width: 100%;
+    height: 60rpx;
+    text-align: center;
+    line-height: 60rpx;
+}
+
 .house-create-list {
     width: 690rpx;
     margin: 0 auto;

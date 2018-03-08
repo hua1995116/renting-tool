@@ -1,18 +1,19 @@
 <view class="home-page">
+    <navigator url="../createhouse/createhouse" open-type="navigateTo">
+        <view class="house-create__title">
+            添加
+        </view> 
+    </navigator>
+     
     <view class="house-create-list">
-        <view class="house-create__item">
-            <navigator url="../createhouse/createhouse" open-type="navigateTo">
-                <view class="create-add">
-                    <view class="create-add__left"></view>
-                    <view class="create-add__right"></view>
+        <block wx:for="{{listData}}" wx:key="{{index}}">
+            <navigator url="../index/index?index={{index}}" open-type="navigateTo">
+                <view class="house-create__item" >
+                    {{item.location}}
                 </view>
             </navigator>
-        </view>  
-        <view class="house-create__item" wx:for="{{listData}}" wx:key="{{index}}">
-            <navigator url="../index/index?index={{index}}" open-type="navigateTo">
-                {{item.location}}
-            </navigator>
-        </view>
+        </block>
+        
         <view class="clearfix"></view>
     </view>
     <button class="evaluate-content" hover-class="hover-btn-tran">
