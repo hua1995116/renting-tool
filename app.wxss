@@ -23,3 +23,45 @@ page {
   height: 0;
   clear: both;
 }
+
+/* base color*/
+.green-1 {
+  background: #f6ffed;
+  color: 
+}
+
+.green-2 {
+  background: #d9f7be;
+}
+
+.green-3 {
+  background: #b7eb8f;
+}
+
+.green-4{
+  background: #95de64;
+}
+
+.green-5 {
+  background: #73d13d;
+}
+
+.green-6 {
+  background: #52c41a;
+}
+
+.green-7 {
+  background: #389e0d;
+}
+
+.green-8 {
+  background: #237804;
+}
+
+.green-9{
+  background: #135200;
+}
+
+.green-10 {
+  background: #092b00;
+}
