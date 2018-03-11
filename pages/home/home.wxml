@@ -1,22 +1,28 @@
 <view class="home-page">
-    <navigator url="../createhouse/createhouse" open-type="navigateTo">
-        <view class="house-create__title">
-            添加
-        </view> 
-    </navigator>
-     
     <view class="house-create-list">
         <block wx:for="{{listData}}" wx:key="{{index}}">
-            <navigator url="../index/index?index={{index}}" open-type="navigateTo">
-                <view class="house-create__item" >
-                    {{item.location}}
+            <!-- <navigator url="../index/index?index={{index}}"  open-type="navigateTo"> -->
+                <view class="house-create__item red-{{index+1}}" style="top:{{index * 100}}rpx;" bind:tap="handletap" id="{{index}}">
+                    <view class="house-create__item__title">{{item.location}}</view>
                 </view>
-            </navigator>
+            <!-- </navigator> -->
         </block>
         
-        <view class="clearfix"></view>
+        <view class="clearfix">
+        </view>
     </view>
-    <button class="evaluate-content" hover-class="hover-btn-tran">
-        开始评价
-    </button>
+    <view class="house-detail__container" >
+        <view animation="{{animationData}}" style="left:{{createPosition.left}}px;top:{{createPosition.top}}px" class="house-detail__bg"></view>
+        <view wx:if="{{showitem.location}}" class="house-detail__item">
+            {{showitem.location}}
+        </view>
+    </view>
+    <view class="evaluate-content" bind:tap="handleUrl">
+        <block wx:if="{{showitem.location}}"> 
+            X </block>
+        <block wx:else>
+            <view class="evaluate-content__h"></view>
+            <view class="evaluate-content__s"></view>
+        </block>
+    </view>
 </view>
