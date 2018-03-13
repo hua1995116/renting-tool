@@ -11,7 +11,7 @@
         <view class="clearfix">
         </view>
     </view>
-    <view class="house-detail__container" animation="{{animationData}}" style="left:{{createPosition.left}}px;top:{{createPosition.top}}px">
+    <view wx:if="{{ishow}}" class="house-detail__container" animation="{{animationData}}" style="left:{{createPosition.left}}px;top:{{createPosition.top}}px">
         <view wx:if="{{showitem.location}}" class="house-detail__item">
             {{showitem.location}}
         </view>
