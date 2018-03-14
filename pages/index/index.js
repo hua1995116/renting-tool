@@ -38,14 +38,12 @@ Page({
     })
   },
   bindtouchmove: function (event) {
-    // console.log(event.touches[0].pageY);
     let length;
     if (event.touches[0].pageX - this.data.startPageX > 0) {
       length = (event.touches[0].pageX - this.data.startPageX);
     } else {
       length = -(this.data.startPageX - event.touches[0].pageX);
     }
-    // console.log('length:', length, 'achieve:', -325 + length);
     // length = Math.sqrt();
     this.setData({
       moveY: event.touches[0].pageY - this.data.startPageY,

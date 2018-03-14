@@ -9,6 +9,8 @@ Page({
       top:0,
     },
     showitem: {},
+    startY: 0,
+    moveY: 0,
     ishow: false,
   },
   onShow() {
@@ -34,18 +36,12 @@ Page({
       ishow: true,
     });
     let animation;
-    // if(this.animation) {
-    //   animation = this.animation;
-    // } else {
-      animation = wx.createAnimation({
-        transformOrigin: "center center",
-        duration: 1000,
-        timingFunction: 'ease',
-      });
-      this.animation = animation;
-    // }
-    // console.log(animation);
-    // debugger;
+    animation = wx.createAnimation({
+      transformOrigin: "center center",
+      duration: 1000,
+      timingFunction: 'ease',
+    });
+    this.animation = animation;
     animation.width('10px').height('10px').left(left).top(top).backgroundColor('#f6ffed').scale(200).step()
 
     this.setData({
@@ -70,23 +66,25 @@ Page({
     return list.map(item => JSON.parse(item))
   },
   handleUrl() {
-    if(this.data.showitem.location) {
-      this.animation.opacity(0).step();
-      this.setData({
-        showitem: {},
-        animationData: this.animation.export()
-      });
-      setTimeout(function() {
-        this.setData({
-          ishow: false,
-        });
-      }.bind(this), 500);
-      this.animation = {};
-    } else {
-      wx.navigateTo({
-        url: '../createhouse/createhouse'
-      })
-      
+    wx.navigateTo({
+      url: '../createhouse/createhouse'
+    })
+  },
+  bindtouchstart(e) {
+    this.setData({
+      startY: e.touches[0].pageY,
+    });
+  },
+  bindtouchmove(e) {
+    // console.log(e.touches[0].pageY - this.data.startY)
+    this.setData({
+      moveY: e.touches[0].pageY - this.data.startY,
+    });
+  },
+  bindtouchend() {
+    console.log(this.data.moveY);
+    if(this.data.moveY < -30) {
+      this.handleUrl();
     }
   }
 })
