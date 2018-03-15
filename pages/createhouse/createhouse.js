@@ -6,14 +6,14 @@ Page({
     iphone: '',
     date: '',
     items: [
-      {name: 'yangtai', value: '阳台'},
-      {name: 'weishengjian', value: '独卫'},
-      {name: 'chufang', value: '厨房'},
-      {name: 'keting', value: '客厅'},
-      {name: 'xiyiji', value: '洗衣'},
-      {name: 'kongtiao', value: '空调'},
-      {name: 'bingxiang', value: '冰箱'},
-      {name: 'wuxian', value: '无线'},
+      {name: '阳台', value: '阳台'},
+      {name: '独卫', value: '独卫'},
+      {name: '厨房', value: '厨房'},
+      {name: '客厅', value: '客厅'},
+      {name: '洗衣', value: '洗衣'},
+      {name: '空调', value: '空调'},
+      {name: '冰箱', value: '冰箱'},
+      {name: '无线', value: '无线'},
     ]
   },
   bindLocation: function() {

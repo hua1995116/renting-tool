@@ -8,14 +8,27 @@
         <view class="clearfix">
         </view>
     </view>
-    <view wx:if="{{ishow}}" class="house-detail__container" animation="{{animationData}}" style="left:{{createPosition.left}}px;top:{{createPosition.top}}px">
-        <view wx:if="{{showitem.location}}" class="house-detail__item">
-            {{showitem.location}}
+    <view wx:if="{{ishow}}" class="house-detail__container red-{{id}}" animation="{{animationData}}">
+        <view class="house-detail__item">
+            地址:{{showitem.location}}
+        </view>
+        <view class="house-detail__item">
+            电话:{{showitem.iphone}}
+        </view>
+        <view class="house-detail__item">
+            日期:{{showitem.date}}
+        </view>
+        <view class="house-detail__item">
+            <checkbox-group class="create-check__group clearfix" name="facility">
+                <label class="create-checkbox" wx:for="{{showitem.facility}}" wx:key="{{item}}">
+                    <checkbox  value="{{item}}" checked="{{item}}"/>{{item}}
+                </label>
+            </checkbox-group>
         </view>
     </view>
     <view class="evaluate-content" catch:touchstart="bindtouchstart" catch:touchmove="bindtouchmove" catch:touchend="bindtouchend" >
     </view>
-    <view wx:if="{{ishow}}" class="house-close">
+    <view wx:if="{{ishow}}" class="house-close" bind:tap="handleClose">
         <image src="http://oys4ga3zg.bkt.clouddn.com/close.png" class="house-img"></image>
     </view>
 </view>

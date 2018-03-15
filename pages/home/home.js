@@ -4,10 +4,7 @@ Page({
   data: {
     listData: [],
     animationData: {},
-    createPosition: {
-      left:0,
-      top:0,
-    },
+    id: -1,
     showitem: {},
     startY: 0,
     moveY: 0,
@@ -26,14 +23,9 @@ Page({
   handletap(e) {
     console.log(e);
     const id = e.currentTarget.id;
-    const left = e.touches[0].pageX;
-    const top = e.touches[0].pageY;
     this.setData({
-      createPosition: {
-        left,
-        top
-      },
       ishow: true,
+      id: +id+1
     });
     let animation;
     animation = wx.createAnimation({
@@ -42,24 +34,14 @@ Page({
       timingFunction: 'ease',
     });
     this.animation = animation;
-    animation.width('10px').height('10px').left(left).top(top).backgroundColor('#f6ffed').scale(200).step()
-
-    this.setData({
-      animationData:animation.export()
-    });
 
     setTimeout(function(){
-      animation.width('100%').height('100%').top(0).left(0).scale(1).step();
+      animation.opacity(1).step(); 
       this.setData({
         animationData:animation.export(),
-      });
-    }.bind(this), 1000);
-
-    setTimeout(function(){
-      this.setData({
         showitem: this.data.listData[id],
       });
-    }.bind(this), 1200);
+    }.bind(this), 500);
 
   },
   formatListData(list) {
@@ -76,7 +58,6 @@ Page({
     });
   },
   bindtouchmove(e) {
-    // console.log(e.touches[0].pageY - this.data.startY)
     this.setData({
       moveY: e.touches[0].pageY - this.data.startY,
     });
@@ -86,5 +67,17 @@ Page({
     if(this.data.moveY < -30) {
       this.handleUrl();
     }
+  },
+  handleClose() {
+    this.animation.opacity(0).step(); 
+    this.setData({
+      animationData:this.animation.export(),
+    });
+    setTimeout(function() {
+      this.setData({
+        ishow: false,
+        showitem: {}
+      })
+    }.bind(this), 500);
   }
 })
