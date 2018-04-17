@@ -25,6 +25,7 @@
                 </label>
             </checkbox-group>
         </view>
+        <view bind:tap="handleCamera">+</view>
     </view>
     <view class="evaluate-content" catch:touchstart="bindtouchstart" catch:touchmove="bindtouchmove" catch:touchend="bindtouchend" >
     </view>
