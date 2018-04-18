@@ -70,6 +70,17 @@
     border-right: 1rpx solid #000;
 }
 
+.desc-h2 {
+    font-size: 40rpx;
+    text-align: center;
+    padding: 20rpx 0;
+}
+
+.desc-p {
+    font-size: 34rpx;
+    text-align: center;
+    
+}
 
 .evaluate-content {
     position: absolute;
@@ -79,7 +90,15 @@
     z-index: 5;
 }
 
+.evaluate-content__image {
+    width: 100rpx;
+    margin: 0 auto;
+}
 
+.evaluate-content__image image{
+    width: 80rpx;
+    height: 72rpx;
+}
 
 .create-checkbox {
     width:25%; 

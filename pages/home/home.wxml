@@ -7,29 +7,16 @@
         </block>
         <view class="clearfix">
         </view>
-    </view>
-    <view wx:if="{{ishow}}" class="house-detail__container red-{{id}}" animation="{{animationData}}">
-        <view class="house-detail__item">
-            地址:{{showitem.location}}
-        </view>
-        <view class="house-detail__item">
-            电话:{{showitem.iphone}}
-        </view>
-        <view class="house-detail__item">
-            日期:{{showitem.date}}
-        </view>
-        <view class="house-detail__item">
-            <checkbox-group class="create-check__group clearfix" name="facility">
-                <label class="create-checkbox" wx:for="{{showitem.facility}}" wx:key="{{item}}">
-                    <checkbox  value="{{item}}" checked="{{item}}"/>{{item}}
-                </label>
-            </checkbox-group>
-        </view>
-        <view bind:tap="handleCamera">+</view>
+        <block class="house-text">
+            <image src="./images/house.png"></image>
+            <view class="desc-h2">一款懂你的租房小程序</view>
+            <view class="desc-p">底部上滑创建你的第一个小窝</view>
+        </block>
     </view>
     <view class="evaluate-content" catch:touchstart="bindtouchstart" catch:touchmove="bindtouchmove" catch:touchend="bindtouchend" >
+        <view class="evaluate-content__image">
+            <image src="./images/up.png"></image>
+        </view>
     </view>
-    <view wx:if="{{ishow}}" class="house-close" bind:tap="handleClose">
-        <image src="http://oys4ga3zg.bkt.clouddn.com/close.png" class="house-img"></image>
-    </view>
+    
 </view>
