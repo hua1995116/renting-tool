@@ -3,7 +3,8 @@
     "pages/home/home",
     "pages/logs/logs",
     "pages/index/index",
-    "pages/createhouse/createhouse"
+    "pages/createhouse/createhouse",
+    "pages/detail/detail"
   ],
   "window":{
     "backgroundTextStyle":"light",

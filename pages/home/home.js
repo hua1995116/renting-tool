@@ -21,28 +21,30 @@ Page({
     }
   },
   handletap(e) {
-    console.log(e);
+    // console.log(e);
     const id = e.currentTarget.id;
-    this.setData({
-      ishow: true,
-      id: +id+1
-    });
-    let animation;
-    animation = wx.createAnimation({
-      transformOrigin: "center center",
-      duration: 1000,
-      timingFunction: 'ease',
-    });
-    this.animation = animation;
+    // this.setData({
+    //   ishow: true,
+    //   id: +id+1
+    // });
+    // let animation;
+    // animation = wx.createAnimation({
+    //   transformOrigin: "center center",
+    //   duration: 1000,
+    //   timingFunction: 'ease',
+    // });
+    // this.animation = animation;
 
-    setTimeout(function(){
-      animation.opacity(1).step(); 
-      this.setData({
-        animationData:animation.export(),
-        showitem: this.data.listData[id],
-      });
-    }.bind(this), 500);
-
+    // setTimeout(function(){
+    //   animation.opacity(1).step(); 
+    //   this.setData({
+    //     animationData:animation.export(),
+    //     showitem: this.data.listData[id],
+    //   });
+    // }.bind(this), 500);
+    wx.navigateTo({
+      url: `../detail/detail?id=${id}`
+    })
   },
   formatListData(list) {
     return list.map(item => JSON.parse(item))
