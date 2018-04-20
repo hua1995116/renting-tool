@@ -3,7 +3,8 @@ const app = getApp();
 Page({
     data: {
         showitem: {},
-        id: 1
+        id: 1,
+        imagesList: [],
     },
     onShow() {
         let create_list = wx.getStorageSync('create_list');
@@ -29,6 +30,7 @@ Page({
         return list.map(item => JSON.parse(item))
     },
     handleCamera() {
+        const that = this;
         wx.chooseImage({
           count: 1, // 默认9
           sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -37,6 +39,15 @@ Page({
             // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
             var tempFilePaths = res.tempFilePaths;
             console.log(tempFilePaths);
+            wx.saveFile({
+                tempFilePath: tempFilePaths[0],
+                success: function(res) {
+                    var savedFilePath = res.savedFilePath;
+                    that.setData({
+                        imagesList: [savedFilePath]
+                    })
+                }
+            })
           }
         })
     }

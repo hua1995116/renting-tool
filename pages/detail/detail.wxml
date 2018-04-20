@@ -17,5 +17,8 @@
             </checkbox-group>
         </view>
         <view bind:tap="handleCamera">+</view>
+        <block wx:for="{{imagesList}}">
+            <image src="{{item}}"></image>
+        </block>
     </view>
 </view>
