@@ -35,6 +35,13 @@
     height: 100%;
 }
 
+.house-text image {
+    display: block;
+    width: 320rpx;
+    height: 402rpx;
+    margin: 0 auto;
+}
+
 .head-img {
     width: 160rpx;
     height: 160rpx;

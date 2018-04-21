@@ -18,11 +18,11 @@
             </block>
             <view class="clearfix home-bottom">
             </view>
-            <block class="house-text" wx:if="{{listData.length === 0}}">
-                <image src="./images/house.png"></image>
+            <view class="house-text" wx:if="{{listData.length === 0}}">
+                <image src="./images/logo.png"></image>
                 <view class="desc-h2">一款懂你的租房小程序</view>
                 <view class="desc-p">底部上滑创建你的第一个小窝</view>
-            </block>
+            </view>
             <view class="evaluate-content" catch:touchstart="bindtouchstart" catch:touchmove="bindtouchmove" catch:touchend="bindtouchend" >
                 <view class="evaluate-content__image">
                     <image src="./images/fingerprint.png"></image>
