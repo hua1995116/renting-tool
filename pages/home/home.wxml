@@ -1,22 +1,32 @@
-<view class="home-page">
+<view class="home-page" >
     <view class="house-create-list">
-        <block wx:for="{{listData}}" wx:key="{{index}}">
-            <view class="house-create__item red-{{index+1}}" style="top:{{index * 100}}rpx;" bind:tap="handletap" id="{{index}}">
-                <view class="house-create__item__title">{{item.location}}</view>
+
+        <view class="home-head">
+            <image src="{{headUrl}}" class="head-img"></image>
+            <view class="head-name">{{headName}}</view>
+        </view>
+        <view class="home-content">
+            <block wx:if="{{listData.length}}" wx:for="{{listData}}" wx:key="{{index}}">
+                <view class="house-create__item" style="top:{{index * 100}}rpx;" bind:tap="handletap" id="{{index}}">
+                    <view class="house-create__item__title">{{item.location}}</view>
+                    <view class="house-create__item__iphone">{{item.iphone}}</view>
+                </view>
+            </block>
+            <view class="clearfix">
             </view>
-        </block>
-        <view class="clearfix">
+            <block class="house-text" wx:if="{{listData.length === 0}}">
+                <image src="./images/house.png"></image>
+                <view class="desc-h2">一款懂你的租房小程序</view>
+                <view class="desc-p">底部上滑创建你的第一个小窝</view>
+            </block>
+            <view class="evaluate-content" catch:touchstart="bindtouchstart" catch:touchmove="bindtouchmove" catch:touchend="bindtouchend" >
+                <view class="evaluate-content__image">
+                    <image src="./images/fingerprint.png"></image>
+                </view>
+            </view>
         </view>
-        <block class="house-text">
-            <image src="./images/house.png"></image>
-            <view class="desc-h2">一款懂你的租房小程序</view>
-            <view class="desc-p">底部上滑创建你的第一个小窝</view>
-        </block>
+        
     </view>
-    <view class="evaluate-content" catch:touchstart="bindtouchstart" catch:touchmove="bindtouchmove" catch:touchend="bindtouchend" >
-        <view class="evaluate-content__image">
-            <image src="./images/up.png"></image>
-        </view>
-    </view>
+   
     
 </view>

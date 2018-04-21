@@ -9,8 +9,11 @@ Page({
     startY: 0,
     moveY: 0,
     ishow: false,
+    headUrl: '',
+    headName: ''
   },
   onShow() {
+    const that = this;
     let create_list = wx.getStorageSync('create_list');
     if(create_list) {
       const list = this.formatListData(JSON.parse(create_list));
@@ -19,6 +22,22 @@ Page({
         listData: list
       })
     }
+    wx.getUserInfo({
+      success: function(res) {
+        console.log(res);
+        var userInfo = res.userInfo
+        var nickName = userInfo.nickName
+        var avatarUrl = userInfo.avatarUrl
+        var gender = userInfo.gender //性别 0：未知、1：男、2：女
+        var province = userInfo.province
+        var city = userInfo.city
+        var country = userInfo.country
+        that.setData({
+          headUrl: avatarUrl,
+          headName: nickName
+        })
+      }
+    })
   },
   handletap(e) {
     // console.log(e);

@@ -14,7 +14,8 @@ Page({
       {name: '空调', value: '空调'},
       {name: '冰箱', value: '冰箱'},
       {name: '无线', value: '无线'},
-    ]
+    ],
+    getLocation: false
   },
   bindLocation: function() {
     const _this = this;
@@ -27,7 +28,23 @@ Page({
         _this.setData({
           location: name
         })
-      }
+      },
+      fail: function(res){
+        // fail 
+        if(!_this.data.getLocation) {
+          wx.openSetting({
+            //重新请求获取定位
+            success: (res) => {
+              console.log(res);
+              if(res.authSetting['scope.userLocation']) {
+                _this.setData({
+                  getLocation: true
+                })
+              }
+            }
+          })
+        }
+      },
     })
   },
   bindDateChange: function(e) {

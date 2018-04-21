@@ -5,7 +5,7 @@
                 <view class="create-label">
                     选择地址
                 </view>
-                <view class="create-content" bind:tap="bindLocation">
+                <view class="create-content create-input" bind:tap="bindLocation">
                     <input name="location" value="{{location}}" />
                 </view>
             </view>
