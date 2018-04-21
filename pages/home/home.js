@@ -16,7 +16,7 @@ Page({
     const that = this;
     let create_list = wx.getStorageSync('create_list');
     if(create_list) {
-      const list = this.formatListData(JSON.parse(create_list));
+      const list = (JSON.parse(create_list));
       console.log(list);
       this.setData({
         listData: list
@@ -40,27 +40,7 @@ Page({
     })
   },
   handletap(e) {
-    // console.log(e);
     const id = e.currentTarget.id;
-    // this.setData({
-    //   ishow: true,
-    //   id: +id+1
-    // });
-    // let animation;
-    // animation = wx.createAnimation({
-    //   transformOrigin: "center center",
-    //   duration: 1000,
-    //   timingFunction: 'ease',
-    // });
-    // this.animation = animation;
-
-    // setTimeout(function(){
-    //   animation.opacity(1).step(); 
-    //   this.setData({
-    //     animationData:animation.export(),
-    //     showitem: this.data.listData[id],
-    //   });
-    // }.bind(this), 500);
     wx.navigateTo({
       url: `../detail/detail?id=${id}`
     })
@@ -89,17 +69,26 @@ Page({
       this.handleUrl();
     }
   },
-  handleClose() {
-    this.animation.opacity(0).step(); 
-    this.setData({
-      animationData:this.animation.export(),
-    });
-    setTimeout(function() {
-      this.setData({
-        ishow: false,
-        showitem: {}
-      })
-    }.bind(this), 500);
-  },
-  
+  handleDelete(e) {
+    const _this = this;
+    const id = e.currentTarget.id;
+    wx.showModal({
+      title: '提示',
+      content: '是否删除该条信息',
+      success: function(res) {
+        if (res.confirm) {
+          _this.data.listData.splice(id, 1);
+          console.log(_this.data.listData);
+          _this.setData({
+            listData: _this.data.listData
+          });
+          wx.setStorageSync('create_list', JSON.stringify(_this.data.listData));
+          // console.log('用户点击确定')
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+    
+  }
 })

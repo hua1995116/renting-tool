@@ -55,6 +55,7 @@
 }
 
 .house-create__item {
+    position: relative;
     box-sizing: border-box;
     width: 600rpx;
     height: 200rpx;
@@ -62,7 +63,33 @@
     margin: 20rpx auto;
     /* border: 1rpx solid #333; */
     border-radius: 15rpx;
-    box-shadow: 2rpx 2rpx 8rpx 1rpx #333;
+    box-shadow: 2rpx 2rpx 8rpx 1rpx rgb(124, 122, 122);
+}
+
+.house-create__random {
+    position: absolute;
+    right: 10rpx;
+    bottom: 10rpx;
+    width: 100rpx;
+    height: 100rpx;
+}
+
+.house-create__random image {
+    width: 100%;
+    height: 100%;
+}
+
+.house-create__close {
+    position: absolute;
+    right: -20rpx;
+    top: -20rpx;
+    width: 90rpx;
+    height: 90rpx;
+}
+
+.house-create__close image {
+    width: 90rpx;
+    height: 90rpx;
 }
 
 .house-create__item__title {
@@ -119,7 +146,7 @@
 }
 
 .evaluate-content {
-    position: absolute;
+    position: fixed;
     bottom: 0rpx;
     width: 100%;
     height: 150rpx;
@@ -140,4 +167,9 @@
     width:25%; 
     display: block;
     float: left;
+}
+
+.home-bottom {
+    width: 100%;
+    height: 150rpx;
 }

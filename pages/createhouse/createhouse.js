@@ -53,10 +53,18 @@ Page({
       date: e.detail.value
     })
   },
+  formDataImage: function(num) {
+    const url = './images/food/food_@.png';
+    num = num > 10 ? num : `0${num}`;
+    return url.replace('@', num);
+  },
   formSubmit: function(e) {
-    console.log('form发生了submit事件，携带数据为：', e.detail.value);
-    console.log(JSON.stringify(e.detail.value));
-    const formData = JSON.stringify(e.detail.value);
+    // console.log('form发生了submit事件，携带数据为：', e.detail.value);
+    // console.log(JSON.stringify(e.detail.value));
+    const image = parseInt(Math.random() * 19 + 1);
+    let value = {...e.detail.value, image: this.formDataImage(image)};
+    console.log(value);
+    const formData = value;
     const data = wx.getStorageSync('create_list');
     if(data) {
       const list = JSON.parse(data);

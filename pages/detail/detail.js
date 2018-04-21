@@ -20,7 +20,7 @@ Page({
         // console.log(options);
         const id = options.id;
         if(create_list) {
-          const list = this.formatListData(JSON.parse(create_list));
+          const list = JSON.parse(create_list);
           this.setData({
             showitem: list[id]
           })

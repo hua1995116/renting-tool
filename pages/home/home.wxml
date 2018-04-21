@@ -7,12 +7,16 @@
         </view>
         <view class="home-content">
             <block wx:if="{{listData.length}}" wx:for="{{listData}}" wx:key="{{index}}">
-                <view class="house-create__item" style="top:{{index * 100}}rpx;" bind:tap="handletap" id="{{index}}">
-                    <view class="house-create__item__title">{{item.location}}</view>
+                <view class="house-create__item">
+                    <view class="house-create__close" bind:tap="handleDelete" id="{{index}}"><image src="./images/close.png" ></image></view>
+                    <view class="house-create__item__title" bind:tap="handletap" id="{{index}}">{{item.location}}</view>
                     <view class="house-create__item__iphone">{{item.iphone}}</view>
+                    <view class="house-create__random">
+                        <image src="{{item.image}}"></image>
+                    </view>
                 </view>
             </block>
-            <view class="clearfix">
+            <view class="clearfix home-bottom">
             </view>
             <block class="house-text" wx:if="{{listData.length === 0}}">
                 <image src="./images/house.png"></image>
