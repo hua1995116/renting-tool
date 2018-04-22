@@ -147,9 +147,9 @@
 }
 
 .desc-p {
-    font-size: 34rpx;
+    font-size: 30rpx;
     text-align: center;
-    
+    color: rgb(80, 78, 78);
 }
 
 .evaluate-content {
