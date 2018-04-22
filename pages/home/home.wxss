@@ -38,7 +38,7 @@
 .house-text image {
     display: block;
     width: 320rpx;
-    height: 402rpx;
+    height: 320rpx;
     margin: 0 auto;
 }
 
