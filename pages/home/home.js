@@ -25,7 +25,6 @@ Page({
     let openid = wx.getStorageSync('openid');
     let avatarUrl = wx.getStorageSync('avatarUrl');
     let nickName = wx.getStorageSync('nickName');
-    console.log(openid, avatarUrl, nickName)
     if(!openid) {
       this.handleLogin();
     } else {

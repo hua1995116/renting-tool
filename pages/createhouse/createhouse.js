@@ -48,7 +48,6 @@ Page({
     })
   },
   bindDateChange: function(e) {
-    // console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       date: e.detail.value
     })
@@ -59,12 +58,26 @@ Page({
     return url.replace('@', num);
   },
   formSubmit: function(e) {
-    // console.log('form发生了submit事件，携带数据为：', e.detail.value);
-    // console.log(JSON.stringify(e.detail.value));
     const image = parseInt(Math.random() * 19 + 1);
     let value = {...e.detail.value, image: this.formDataImage(image)};
     console.log(value);
     const formData = value;
+    wx.request({
+      url: 'http://localhost:7788/house/addItem',
+      data: {
+        openid,        
+        location: formData.location,
+        iphone: formData.iphone,
+        date: formData.date,
+        type: formData.facility,
+        logo: formData.image,
+        imgList,
+      },
+      success: function(res) {
+        
+      }
+    })
+    return;
     const data = wx.getStorageSync('create_list');
     if(data) {
       const list = JSON.parse(data);
