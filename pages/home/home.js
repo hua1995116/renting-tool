@@ -9,35 +9,98 @@ Page({
     startY: 0,
     moveY: 0,
     ishow: false,
-    headUrl: '',
-    headName: ''
+    avatarUrl: '',
+    nickName: '',
+    openid: '',
   },
   onShow() {
     const that = this;
     let create_list = wx.getStorageSync('create_list');
     if(create_list) {
       const list = (JSON.parse(create_list));
-      console.log(list);
       this.setData({
         listData: list
       })
     }
+    let openid = wx.getStorageSync('openid');
+    let avatarUrl = wx.getStorageSync('avatarUrl');
+    let nickName = wx.getStorageSync('nickName');
+    console.log(openid, avatarUrl, nickName)
+    if(!openid) {
+      this.handleLogin();
+    } else {
+      this.setData({
+        openid,
+        avatarUrl,
+        nickName
+      })
+    }
+  },
+  handlegetUser(res) {
+    this.handleUserInfo(res.detail);
+  },
+  handleLogin() {
+    const that = this;
+    wx.login({
+      success: function(res) {
+        if (res.code) {
+          //发起网络请求
+          wx.request({
+            url: 'http://localhost:7788/user/getId',
+            data: {
+              code: res.code
+            },
+            success: function(res) {
+              const {openid} = res.data;
+              wx.setStorageSync('openid', openid)
+              that.setData({
+                openid,
+              })
+            }
+          })
+        } else {
+          console.log('登录失败！' + res.errMsg);
+        }
+      }
+    });
     wx.getUserInfo({
       success: function(res) {
         console.log(res);
-        var userInfo = res.userInfo
-        var nickName = userInfo.nickName
-        var avatarUrl = userInfo.avatarUrl
-        var gender = userInfo.gender //性别 0：未知、1：男、2：女
-        var province = userInfo.province
-        var city = userInfo.city
-        var country = userInfo.country
+        that.handleUserInfo(res);
+      },
+      fail: function(e){
+        console.log(e);
+      }
+    }) 
+  },
+  handleUserInfo(res) {
+    const that = this;
+    const {userInfo} = res;
+    const {nickName, avatarUrl, gender, province, city, country} = userInfo;
+    wx.request({
+      url: 'http://localhost:7788/user/login',
+      data: {
+        nickName, 
+        avatarUrl, 
+        gender, 
+        province, 
+        city, 
+        country,
+        openid: this.data.openid
+      },
+      success: function(res) {
+        const {openid} = res.data;
         that.setData({
-          headUrl: avatarUrl,
-          headName: nickName
+          openid,
         })
       }
     })
+    this.setData({
+      avatarUrl: avatarUrl,
+      nickName: nickName
+    });
+    wx.setStorageSync('avatarUrl', avatarUrl)
+    wx.setStorageSync('nickName', nickName)
   },
   handletap(e) {
     const id = e.currentTarget.id;

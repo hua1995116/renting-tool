@@ -1,9 +1,15 @@
 <view class="home-page" >
     <view class="house-create-list">
-
         <view class="home-head">
-            <image src="{{headUrl}}" class="head-img"></image>
-            <view class="head-name">{{headName}}</view>
+            <block wx:if="{{openid&&nickName}}">
+                <image src="{{avatarUrl}}" class="head-img"></image>
+                <view class="head-name">{{nickName}}</view>
+            </block>
+            <block wx:else>
+                <button open-type="getUserInfo" bindgetuserinfo="handlegetUser" class="head-img">
+                    登陆
+                </button>
+            </block>
         </view>
         <view class="home-content">
             <block wx:if="{{listData.length}}" wx:for="{{listData}}" wx:key="{{index}}">
