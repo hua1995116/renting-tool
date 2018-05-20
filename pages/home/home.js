@@ -15,13 +15,6 @@ Page({
   },
   onShow() {
     const that = this;
-    let create_list = wx.getStorageSync('create_list');
-    if(create_list) {
-      const list = (JSON.parse(create_list));
-      this.setData({
-        listData: list
-      })
-    }
     let openid = wx.getStorageSync('openid');
     let avatarUrl = wx.getStorageSync('avatarUrl');
     let nickName = wx.getStorageSync('nickName');
@@ -32,6 +25,28 @@ Page({
         openid,
         avatarUrl,
         nickName
+      });
+      wx.request({
+        url: 'http://localhost:7788/house/list',
+        data: {
+          openid,
+        },
+        success: function(res) {
+          const {data} = res.data;
+          that.setData({
+            listData: data,
+          })
+          // console.log(res);
+        },
+        fail: function() {
+          let create_list = wx.getStorageSync('create_list');
+          if(create_list) {
+            const list = (JSON.parse(create_list));
+            that.setData({
+              listData: list
+            })
+          }
+        }
       })
     }
   },
@@ -134,6 +149,9 @@ Page({
   handleDelete(e) {
     const _this = this;
     const id = e.currentTarget.id;
+    console.log(this.data.listData[id]);
+    
+    // return;
     wx.showModal({
       title: '提示',
       content: '是否删除该条信息',
@@ -145,12 +163,33 @@ Page({
             listData: _this.data.listData
           });
           wx.setStorageSync('create_list', JSON.stringify(_this.data.listData));
+          _this.handleDateDel(_this.data.listData[id].houseId);
           // console.log('用户点击确定')
         } else if (res.cancel) {
           console.log('用户点击取消')
         }
       }
     })
-    
+  },
+  handleDateDel(houseId) {
+    console.log(houseId);
+    const _this = this;
+    wx.request({
+      url: 'http://localhost:7788/house/delete',
+      data: {
+        openid: _this.data.openid,
+        houseId
+      },
+      success: function(res) {
+        if(res && res.data.code === 201) {
+          console.log('del success');
+          wx.showToast({
+            title: '删除成功!',
+            icon: 'success',
+            duration: 2000
+          })
+        }
+      }
+    })
   }
 })

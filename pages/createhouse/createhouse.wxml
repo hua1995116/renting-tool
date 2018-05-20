@@ -29,7 +29,7 @@
                     </picker>
                 </view>
             </view>
-            <checkbox-group class="create-check__group clearfix" name="facility">
+            <checkbox-group class="create-check__group clearfix" name="type">
                 <label class="create-checkbox" wx:for="{{items}}" wx:key="{{item.name}}">
                     <checkbox  value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
                 </label>

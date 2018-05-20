@@ -17,6 +17,12 @@ Page({
     ],
     getLocation: false
   },
+  onShow() {
+    let openid = wx.getStorageSync('openid');
+    this.setData({
+      openid,
+    })
+  },
   bindLocation: function() {
     const _this = this;
     wx.chooseLocation({
@@ -54,10 +60,11 @@ Page({
   },
   formDataImage: function(num) {
     const url = './images/food/food_@.png';
-    num = num > 10 ? num : `0${num}`;
+    num = num >= 10 ? num : `0${num}`;
     return url.replace('@', num);
   },
   formSubmit: function(e) {
+    const that = this;
     const image = parseInt(Math.random() * 19 + 1);
     let value = {...e.detail.value, image: this.formDataImage(image)};
     console.log(value);
@@ -65,19 +72,27 @@ Page({
     wx.request({
       url: 'http://localhost:7788/house/addItem',
       data: {
-        openid,        
+        openid: this.data.openid,        
         location: formData.location,
         iphone: formData.iphone,
         date: formData.date,
-        type: formData.facility,
-        logo: formData.image,
-        imgList,
+        type: formData.type,
+        image: formData.image,
       },
       success: function(res) {
-        
+        console.log(res.data.data);
+        wx.showToast({
+          title: '创建成功!',
+          icon: 'success',
+          duration: 2000
+        })
+        that.storeData(res.data.data)
       }
     })
     return;
+  },
+  storeData(resData) {
+    const formData = resData;
     const data = wx.getStorageSync('create_list');
     if(data) {
       const list = JSON.parse(data);
@@ -92,5 +107,5 @@ Page({
     wx.navigateTo({
       url: '../home/home'
     })
-  },
+  }
 })
