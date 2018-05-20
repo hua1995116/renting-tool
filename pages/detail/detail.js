@@ -17,10 +17,23 @@ Page({
         var url = currentPage.route    //当前页面url
 
         var options = currentPage.options    //如果要获取url中所带的参数可以查看options
-        // console.log(options);
+
         const id = options.id;
         if(create_list) {
-          const list = JSON.parse(create_list);
+          let list = JSON.parse(create_list);
+          console.log(list);
+          list = list.map(item => {
+              return {  
+                date: item.date,
+                houseId: item.houseId,
+                id: item.id,
+                image: item.image,
+                iphone: item.iphone,
+                location: item.location,
+                openid: item.openid,
+                type: JSON.parse(item.type),
+              }
+          })  
           this.setData({
             showitem: list[id]
           })
@@ -39,13 +52,13 @@ Page({
             // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
             var tempFilePaths = res.tempFilePaths;
             console.log(tempFilePaths);
-            wx.saveFile({
-                tempFilePath: tempFilePaths[0],
-                success: function(res) {
-                    var savedFilePath = res.savedFilePath;
-                    that.setData({
-                        imagesList: [savedFilePath]
-                    })
+            wx.uploadFile({
+                url: 'http://localhost:7788/upload/houst-img', //仅为示例，非真实的接口地址
+                filePath: tempFilePaths[0],
+                name: 'file',
+                success: function(res){
+                  var data = res.data;
+                  //do something
                 }
             })
           }
