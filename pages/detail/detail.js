@@ -44,24 +44,37 @@ Page({
     },
     handleCamera() {
         const that = this;
-        wx.chooseImage({
-          count: 1, // 默认9
-          sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-          sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-          success: function (res) {
-            // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-            var tempFilePaths = res.tempFilePaths;
-            console.log(tempFilePaths);
-            wx.uploadFile({
-                url: 'http://localhost:7788/upload/houst-img', //仅为示例，非真实的接口地址
-                filePath: tempFilePaths[0],
-                name: 'file',
-                success: function(res){
-                  var data = res.data;
-                  //do something
+        const length = this.data.imagesList.length;
+        if(length >= 9) {
+            wx.showToast({
+                title: '上传超过最大张数！',
+                icon: 'success',
+                duration: 2000
+            })
+        } else {
+            const count = 9 - length;
+            wx.chooseImage({
+                count, // 默认9
+                sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+                sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+                success: function (res) {
+                  // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+                  var tempFilePaths = res.tempFilePaths;
+                  that.data.imagesList.push(...tempFilePaths);
+                  console.log(that.data.imagesList);
+                //   console.log(tempFilePaths);
+                  wx.uploadFile({
+                      url: 'http://localhost:7788/upload/houst-img', //仅为示例，非真实的接口地址
+                      filePath: JSON.stringify(tempFilePaths[0]),
+                      name: 'file',
+                      success: function(res){
+                        var data = res.data;
+                        //do something
+                      }
+                  })
                 }
             })
-          }
-        })
+        }
+        
     }
 })
