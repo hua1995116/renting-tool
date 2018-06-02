@@ -4,7 +4,7 @@ Page({
     data: {
         showitem: {},
         id: 1,
-        imagesList: [],
+        imagesList: ['http://p9p788xph.bkt.clouddn.com/1527951803625-wx9b0e913c3e69d62e.o6zAJsxBRiaid9xcmfNXluf8qmoU.amI7pLkULHhK8190a8108744d7780c34de64ff5cad13.jpg'],
     },
     onShow() {
         let openid = wx.getStorageSync('openid');
@@ -47,10 +47,14 @@ Page({
         return list.map(item => JSON.parse(item))
     },
     handleCamera() {
+        
 
         // console.log(this.data.showitem);
         // console.log(this.data.openid);
         const that = this;
+        that.data.imagesList.push('http://p9p788xph.bkt.clouddn.com/1527951803625-wx9b0e913c3e69d62e.o6zAJsxBRiaid9xcmfNXluf8qmoU.amI7pLkULHhK8190a8108744d7780c34de64ff5cad13.jpg');
+        console.log(that.data.imagesList);
+        return;
         const length = this.data.imagesList.length;
         if (length >= 9) {
             wx.showToast({
@@ -67,8 +71,7 @@ Page({
                 success: function (res) {
                     // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
                     var tempFilePaths = res.tempFilePaths;
-                    that.data.imagesList.push(...tempFilePaths);
-                    console.log(that.data.imagesList);
+                    
                     //   console.log(tempFilePaths);
                     var successUp = 0; //成功个数
                     var failUp = 0; //失败个数
@@ -106,6 +109,12 @@ Page({
             },
             success: (resp) => {
                 successUp++;
+                console.log(resp);
+                const res = JSON.parse(resp.data);
+                if(res.code === 0) {
+                    that.data.imagesList.push(res.url);
+                    console.log(res.url);
+                }
             },
             fail: (res) => {
                 failUp++;
@@ -113,7 +122,11 @@ Page({
             complete: () => {
                 i++;
                 if (i == length) {
-                    wx.showToast('总共' + successUp + '张上传成功,' + failUp + '张上传失败！');
+                    wx.showToast({
+                        title: '总共' + successUp + '张上传成功,' + failUp + '张上传失败！',
+                        icon: 'success',
+                        duration: 2000
+                    })
                 } else { //递归调用uploadDIY函数
                     that.uploadDIY(filePaths, successUp, failUp, i, length);
                 }

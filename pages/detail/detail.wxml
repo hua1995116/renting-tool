@@ -18,7 +18,7 @@
         </view>
         <view bind:tap="handleCamera">+</view>
         <block wx:for="{{imagesList}}" wx:key="{{item}}">
-            <image src="{{item}}"></image>
+            <image style="width: 200px; background-color: #eeeeee;" mode="widthFix" src="{{item}}"></image>
         </block>
     </view>
 </view>
