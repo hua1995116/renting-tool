@@ -1,26 +1,19 @@
 const app = getApp();
+const util = require('../../utils/util.js')
 
 Page({
     data: {
         showitem: {},
         id: 1,
-        imagesList: ['http://p9p788xph.bkt.clouddn.com/1527951803625-wx9b0e913c3e69d62e.o6zAJsxBRiaid9xcmfNXluf8qmoU.amI7pLkULHhK8190a8108744d7780c34de64ff5cad13.jpg'],
+        imagesList: [],
     },
     onShow() {
         let openid = wx.getStorageSync('openid');
-        this.setData({
-            openid,
-        })
         let create_list = wx.getStorageSync('create_list');
-        // const id = location.href;
-        // console.log(id);
-        var pages = getCurrentPages() //获取加载的页面
-
-        var currentPage = pages[pages.length - 1] //获取当前页面的对象
-
-        var url = currentPage.route //当前页面url
-
-        var options = currentPage.options //如果要获取url中所带的参数可以查看options
+        const pages = getCurrentPages() //获取加载的页面
+        const currentPage = pages[pages.length - 1] //获取当前页面的对象
+        const url = currentPage.route //当前页面url
+        const options = currentPage.options //如果要获取url中所带的参数可以查看options
 
         const id = options.id;
         if (create_list) {
@@ -28,7 +21,7 @@ Page({
             console.log(list);
             list = list.map(item => {
                 return {
-                    date: item.date,
+                    date: util.formatTime(new Date(item.date)),
                     houseId: item.houseId,
                     id: item.id,
                     image: item.image,
@@ -39,22 +32,40 @@ Page({
                 }
             })
             this.setData({
-                showitem: list[id]
-            })
+                showitem: list[id],
+                houseId: list[id].houseId,
+                openid,
+            });
+            this.fetch(this.data.openid, this.data.houseId);
         }
+    },
+    fetch(openid, houseId) {
+        const that = this;
+        wx.request({
+            url: 'http://172.27.35.1:7788/upload/house-img-list',
+            data: {
+              openid,
+              houseId
+            },
+            success: function(res) {
+              const {data} = res.data;
+              that.setData({
+                imagesList: data,
+              })
+            },
+            fail: function() {
+            }
+        })
     },
     formatListData(list) {
         return list.map(item => JSON.parse(item))
     },
     handleCamera() {
-        
-
         // console.log(this.data.showitem);
         // console.log(this.data.openid);
         const that = this;
-        that.data.imagesList.push('http://p9p788xph.bkt.clouddn.com/1527951803625-wx9b0e913c3e69d62e.o6zAJsxBRiaid9xcmfNXluf8qmoU.amI7pLkULHhK8190a8108744d7780c34de64ff5cad13.jpg');
-        console.log(that.data.imagesList);
-        return;
+        // console.log(that.data.imagesList);
+        // return;
         const length = this.data.imagesList.length;
         if (length >= 9) {
             wx.showToast({
@@ -78,15 +89,6 @@ Page({
                     var length = tempFilePaths.length; //总共个数
                     var i = 0; //第几个
                     that.uploadDIY(tempFilePaths, successUp, failUp, i, length);
-                    // wx.uploadFile({
-                    //     url: 'http://localhost:7788/upload/houst-img', //仅为示例，非真实的接口地址
-                    //     filePath: tempFilePaths[0],
-                    //     name: 'file',
-                    //     success: function(res){
-                    //         var data = res.data;
-                    //         //do something
-                    //     }
-                    // })
                 }
             })
         }
@@ -100,7 +102,7 @@ Page({
         const openid = this.data.openid;
         const that = this;
         wx.uploadFile({
-            url: 'http://localhost:7788/upload/houst-img',
+            url: 'http://172.27.35.1:7788/upload/houst-img',
             filePath: filePaths[i],
             name: 'file',
             formData: {
@@ -112,7 +114,10 @@ Page({
                 console.log(resp);
                 const res = JSON.parse(resp.data);
                 if(res.code === 0) {
-                    that.data.imagesList.push(res.url);
+                    const list =  that.data.imagesList.concat(res.url);
+                    this.setData({
+                        imagesList: list
+                    })
                     console.log(res.url);
                 }
             },

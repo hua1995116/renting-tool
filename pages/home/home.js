@@ -27,7 +27,7 @@ Page({
         nickName
       });
       wx.request({
-        url: 'http://localhost:7788/house/list',
+        url: 'http://172.27.35.1:7788/house/list',
         data: {
           openid,
         },
@@ -60,7 +60,7 @@ Page({
         if (res.code) {
           //发起网络请求
           wx.request({
-            url: 'http://localhost:7788/user/getId',
+            url: 'http://172.27.35.1:7788/user/getId',
             data: {
               code: res.code
             },
@@ -92,7 +92,7 @@ Page({
     const {userInfo} = res;
     const {nickName, avatarUrl, gender, province, city, country} = userInfo;
     wx.request({
-      url: 'http://localhost:7788/user/login',
+      url: 'http://172.27.35.1:7788/user/login',
       data: {
         nickName, 
         avatarUrl, 
@@ -175,7 +175,7 @@ Page({
     console.log(houseId);
     const _this = this;
     wx.request({
-      url: 'http://localhost:7788/house/delete',
+      url: 'http://172.27.35.1:7788/house/delete',
       data: {
         openid: _this.data.openid,
         houseId
