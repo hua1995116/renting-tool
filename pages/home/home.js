@@ -1,4 +1,5 @@
 const app = getApp();
+import {host} from '../../utils/config';
 
 Page({
   data: {
@@ -27,7 +28,7 @@ Page({
         nickName
       });
       wx.request({
-        url: 'http://172.27.35.1:7788/house/list',
+        url: `${host}/house/list`,
         data: {
           openid,
         },
@@ -60,7 +61,7 @@ Page({
         if (res.code) {
           //发起网络请求
           wx.request({
-            url: 'http://172.27.35.1:7788/user/getId',
+            url: `${host}/user/getId`,
             data: {
               code: res.code
             },
@@ -92,7 +93,7 @@ Page({
     const {userInfo} = res;
     const {nickName, avatarUrl, gender, province, city, country} = userInfo;
     wx.request({
-      url: 'http://172.27.35.1:7788/user/login',
+      url: `${host}/user/login`,
       data: {
         nickName, 
         avatarUrl, 
@@ -146,6 +147,10 @@ Page({
       this.handleUrl();
     }
   },
+  handleCreate() {
+    this.handleUrl();
+  },
+
   handleDelete(e) {
     const _this = this;
     const id = e.currentTarget.id;
@@ -175,7 +180,7 @@ Page({
     console.log(houseId);
     const _this = this;
     wx.request({
-      url: 'http://172.27.35.1:7788/house/delete',
+      url: `${host}/house/delete`,
       data: {
         openid: _this.data.openid,
         houseId

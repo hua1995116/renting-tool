@@ -14,11 +14,21 @@
         <view class="home-content">
             <block wx:if="{{listData.length}}" wx:for="{{listData}}" wx:key="{{index}}">
                 <view class="house-create__item">
-                    <view class="house-create__close" bind:tap="handleDelete" id="{{index}}"><image src="./images/close.png" ></image></view>
-                    <view class="house-create__item__title" bind:tap="handletap" id="{{index}}" >{{item.location}}</view>
-                    <view class="house-create__item__iphone">{{item.iphone}}</view>
+                    <!-- <view class="house-create__close" bind:tap="handleDelete" id="{{index}}"><image src="./images/close.png" ></image></view> -->
+                    <view class="house-create__item__title" bind:tap="handletap" id="{{index}}" >
+                        <image 
+                            src="./images/location.png" class="house-create-icon"
+                        ></image>
+                        <span>{{item.location}}</span>
+                    </view>
+                    <view class="house-create__item__iphone">
+                        <image 
+                            src="./images/phone.png" class="house-create-icon"
+                        ></image>
+                        <span>{{item.iphone}}</span>
+                    </view>
                     <view class="house-create__random">
-                        <image src="{{item.image}}"></image>
+                        <!-- <image src="{{item.image}}"></image> -->
                     </view>
                 </view>
             </block>
@@ -29,11 +39,14 @@
                 <view class="desc-h2">一款懂你的租房小程序</view>
                 <view class="desc-p">底部上滑创建你的第一个小窝</view>
             </view>
-            <view class="evaluate-content" catch:touchstart="bindtouchstart" catch:touchmove="bindtouchmove" catch:touchend="bindtouchend" >
+            <view class="create-item" bind:tap="handleCreate">
+                <image src="./images/more.png"></image>
+            </view>
+            <!-- <view class="evaluate-content" catch:touchstart="bindtouchstart" catch:touchmove="bindtouchmove" catch:touchend="bindtouchend" >
                 <view class="evaluate-content__image">
                     <image src="./images/fingerprint.png"></image>
                 </view>
-            </view>
+            </view> -->
         </view>
         
     </view>

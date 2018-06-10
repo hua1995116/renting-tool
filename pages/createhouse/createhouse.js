@@ -1,4 +1,5 @@
 const app = getApp();
+import {host} from '../../utils/config';
 
 Page({
   data: {
@@ -70,7 +71,7 @@ Page({
     console.log(value);
     const formData = value;
     wx.request({
-      url: 'http://172.27.35.1:7788/house/addItem',
+      url: `${host}/house/addItem`,
       data: {
         openid: this.data.openid,        
         location: formData.location,

@@ -2,6 +2,7 @@
     width: 100%;
     height: 100%;
     overflow-y: hidden;
+    font-family:"Microsoft YaHei",Arial,Helvetica,sans-serif,"宋体";
 }
 
 .house-create__title {
@@ -65,12 +66,16 @@
     position: relative;
     box-sizing: border-box;
     width: 600rpx;
-    height: 200rpx;
+    height: 160rpx;
     padding: 10rpx 20rpx;
-    margin: 20rpx auto;
+    margin: 20px auto;
     /* border: 1rpx solid #333; */
     border-radius: 15rpx;
     box-shadow: 2rpx 2rpx 8rpx 1rpx rgb(124, 122, 122);
+}
+
+.house-create__item span {
+    vertical-align: top;
 }
 
 .house-create__random {
@@ -104,13 +109,22 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-size: 40rpx;
+    font-size: 14pt;
+    color: #817e7e;
+    margin-bottom: 20rpx;
 }
 
 .house-create__item__iphone {
     width: 100%;
-    font-size: 34rpx;
-    color: #333;
+    font-size: 14pt;
+    color: #817e7e;
+}
+
+.house-create-icon {
+    width: 42rpx;
+    height: 42rpx;
+    margin-right: 10rpx;
+    vertical-align: top;
 }
 
 .create-add {
@@ -178,5 +192,17 @@
 
 .home-bottom {
     width: 100%;
+    height: 150rpx;
+}
+
+.create-item {
+    position: absolute;
+    width: 150rpx;
+    height: 150rpx;
+    right: 60rpx;
+    bottom: 60rpx;
+}
+.create-item image {
+    width: 150rpx;
     height: 150rpx;
 }

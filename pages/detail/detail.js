@@ -1,5 +1,6 @@
 const app = getApp();
-const util = require('../../utils/util.js')
+const util = require('../../utils/util.js');
+import {host} from '../../utils/config';
 
 Page({
     data: {
@@ -42,7 +43,7 @@ Page({
     fetch(openid, houseId) {
         const that = this;
         wx.request({
-            url: 'http://172.27.35.1:7788/upload/house-img-list',
+            url: `${host}/upload/house-img-list`,
             data: {
               openid,
               houseId
@@ -102,7 +103,7 @@ Page({
         const openid = this.data.openid;
         const that = this;
         wx.uploadFile({
-            url: 'http://172.27.35.1:7788/upload/houst-img',
+            url: `${host}/upload/houst-img`,
             filePath: filePaths[i],
             name: 'file',
             formData: {
