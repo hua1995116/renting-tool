@@ -17,6 +17,7 @@ Page({
         const options = currentPage.options //如果要获取url中所带的参数可以查看options
 
         const id = options.id;
+        console.log(id);
         if (create_list) {
             let list = JSON.parse(create_list);
             console.log(list);

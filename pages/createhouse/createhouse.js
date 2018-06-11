@@ -33,7 +33,10 @@ Page({
         var latitude = res.latitude;
         var longitude = res.longitude;
         _this.setData({
-          location: name
+          location: name,
+          address,
+          latitude,
+          longitude,
         })
       },
       fail: function(res){

@@ -20,7 +20,7 @@ Page({
     let avatarUrl = wx.getStorageSync('avatarUrl');
     let nickName = wx.getStorageSync('nickName');
     if(!openid) {
-      this.handleLogin();
+      // this.handleLogin();
     } else {
       this.setData({
         openid,
@@ -37,6 +37,7 @@ Page({
           that.setData({
             listData: data,
           })
+          wx.setStorageSync('create_list', JSON.stringify(data));
           // console.log(res);
         },
         fail: function() {
@@ -51,10 +52,13 @@ Page({
       })
     }
   },
-  handlegetUser(res) {
-    this.handleUserInfo(res.detail);
+  getItem(a, b) {
+    return 11;
   },
-  handleLogin() {
+  handlegetUser(res) {
+    this.handleLogin(res.detail);
+  },
+  handleLogin(info) {
     const that = this;
     wx.login({
       success: function(res) {
@@ -68,9 +72,11 @@ Page({
             success: function(res) {
               const {openid} = res.data;
               wx.setStorageSync('openid', openid)
+              console.log(openid);
               that.setData({
                 openid,
               })
+              that.handleUserInfo(info);
             }
           })
         } else {
@@ -78,20 +84,21 @@ Page({
         }
       }
     });
-    wx.getUserInfo({
-      success: function(res) {
-        console.log(res);
-        that.handleUserInfo(res);
-      },
-      fail: function(e){
-        console.log(e);
-      }
-    }) 
+    // wx.getUserInfo({
+    //   success: function(res) {
+    //     console.log(res);
+    //     that.handleUserInfo(res);
+    //   },
+    //   fail: function(e){
+    //     console.log(e);
+    //   }
+    // }) 
   },
   handleUserInfo(res) {
     const that = this;
     const {userInfo} = res;
     const {nickName, avatarUrl, gender, province, city, country} = userInfo;
+    console.log('handleUserInfo'+this.data.openid);
     wx.request({
       url: `${host}/user/login`,
       data: {
@@ -104,10 +111,18 @@ Page({
         openid: this.data.openid
       },
       success: function(res) {
-        const {openid} = res.data;
-        that.setData({
-          openid,
-        })
+        console.log(res.data);
+        if(res.data.code === 200 || res.data.code === 201) {
+          console.log('登陆成功');
+          wx.showToast({
+            title: '登陆成功!',
+            icon: 'success',
+            duration: 2000
+          })
+        }
+      }, 
+      fail: function(err) {
+        console.log(err);
       }
     })
     this.setData({

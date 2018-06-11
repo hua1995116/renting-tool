@@ -12,6 +12,7 @@
             </block>
         </view>
         <view class="home-content">
+            <view>{{getItem(1,2)}}</view>
             <block wx:if="{{listData.length}}" wx:for="{{listData}}" wx:key="{{index}}">
                 <view class="house-create__item">
                     <!-- <view class="house-create__close" bind:tap="handleDelete" id="{{index}}"><image src="./images/close.png" ></image></view> -->
