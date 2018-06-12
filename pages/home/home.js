@@ -19,6 +19,17 @@ Page({
     let openid = wx.getStorageSync('openid');
     let avatarUrl = wx.getStorageSync('avatarUrl');
     let nickName = wx.getStorageSync('nickName');
+    wx.getLocation({
+      type: 'wgs84',
+      success: function(res) {
+        var latitude = res.latitude
+        var longitude = res.longitude
+        that.setData({
+          latitude,
+          longitude
+        })
+      }
+    })
     if(!openid) {
       // this.handleLogin();
     } else {

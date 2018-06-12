@@ -1,3 +1,5 @@
+<wxs module="common" src="../../utils/common.wxs"></wxs>
+
 <view class="home-page" >
     <view class="house-create-list">
         <view class="home-head">
@@ -29,6 +31,10 @@
                         <span>{{item.iphone}}</span>
                     </view>
                     <view class="house-create__random">
+                        <image 
+                            src="./images/map.png" class="house-create-icon"
+                        ></image>
+                        {{common.getDistance(item.latitude, item.longitude, latitude, longitude)}}
                         <!-- <image src="{{item.image}}"></image> -->
                     </view>
                 </view>

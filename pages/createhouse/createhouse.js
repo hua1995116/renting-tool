@@ -76,7 +76,10 @@ Page({
     wx.request({
       url: `${host}/house/addItem`,
       data: {
-        openid: this.data.openid,        
+        openid: this.data.openid,  
+        address: this.data.address, 
+        latitude: this.data.latitude, 
+        longitude: this.data.longitude, 
         location: formData.location,
         iphone: formData.iphone,
         date: formData.date,

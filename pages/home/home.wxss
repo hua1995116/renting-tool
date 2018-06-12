@@ -80,15 +80,11 @@
 
 .house-create__random {
     position: absolute;
-    right: 10rpx;
-    bottom: 10rpx;
-    width: 100rpx;
-    height: 100rpx;
-}
-
-.house-create__random image {
-    width: 100%;
-    height: 100%;
+    right: 0rpx;
+    bottom: 0rpx;
+    font-size: 11pt;
+    width: 160rpx;
+    height: 50rpx;
 }
 
 .house-create__close {
@@ -196,7 +192,7 @@
 }
 
 .create-item {
-    position: absolute;
+    position: fixed;
     width: 150rpx;
     height: 150rpx;
     right: 60rpx;
