@@ -16,6 +16,11 @@
                 </label>
             </checkbox-group>
         </view>
+        <view wx:for="{{traffic}}" wx:key="{{item}}">
+            {{item.distance}}m
+            {{item.address}}
+            {{item.name}}
+        </view>
         <view bind:tap="handleCamera" class="house-img__add">添加</view>
         <block wx:for="{{imagesList}}" wx:key="{{item}}">
             <image class="house-img-item" mode="widthFix" src="{{item}}"></image>

@@ -1,3 +1,5 @@
+var amapFile = require('../../lib/amap-wx.js');
+
 const app = getApp();
 const util = require('../../utils/util.js');
 import {host} from '../../utils/config';
@@ -7,7 +9,9 @@ Page({
         showitem: {},
         id: 1,
         imagesList: [],
+        traffic: [],
     },
+    
     onShow() {
         let openid = wx.getStorageSync('openid');
         let create_list = wx.getStorageSync('create_list');
@@ -31,6 +35,8 @@ Page({
                     location: item.location,
                     openid: item.openid,
                     type: JSON.parse(item.type),
+                    latitude: item.latitude,
+                    longitude: item.longitude
                 }
             })
             this.setData({
@@ -39,7 +45,37 @@ Page({
                 openid,
             });
             this.fetch(this.data.openid, this.data.houseId);
+            const {latitude, longitude} = this.data.showitem;
+            console.log(this.data.showitem);
+            this.randIpo(latitude, longitude);
         }
+    },
+    randIpo(latitude, longitude) {
+        console.log(latitude, longitude);
+        const that = this;
+
+        var myAmapFun = new amapFile.AMapWX({key:'040d154a143d6d788ffec62f611b28b7'});
+        myAmapFun.getPoiAround({
+            querykeywords: '地铁站',
+            success: function(data){
+              console.log(data);
+              const mapData = data.poisData.filter(item => {
+                // const latitude1 = item.location.split(',')[1];
+                // const longitude1 = item.location.split(',')[0];
+                // const distance = util.getDistance(latitude1, longitude1, latitude, longitude);
+                // console.log(distance);
+                return item.distance < 1000 * 2;
+              })
+              console.log(mapData);
+              that.setData({
+                traffic: mapData
+              })
+            },
+            fail: function(info){
+              //失败回调
+              console.log(info)
+            }
+        })
     },
     fetch(openid, houseId) {
         const that = this;
