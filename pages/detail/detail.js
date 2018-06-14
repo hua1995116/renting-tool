@@ -10,6 +10,8 @@ Page({
         id: 1,
         imagesList: [],
         traffic: [],
+        currentTab: 0,
+        food: [],
     },
     
     onShow() {
@@ -50,25 +52,64 @@ Page({
             this.randIpo(latitude, longitude);
         }
     },
+    swiperTab: function (e) {
+        var that = this;
+        that.setData({
+          currentTab: e.detail.current
+        });
+      },
+      //点击切换
+      clickTab: function (e) {
+        var that = this;
+        if (this.data.currentTab === e.target.dataset.current) {
+          return false;
+        } else {
+          that.setData({
+            currentTab: e.target.dataset.current
+          })
+        }
+    },
     randIpo(latitude, longitude) {
         console.log(latitude, longitude);
         const that = this;
+        const key = '040d154a143d6d788ffec62f611b28b7'
 
-        var myAmapFun = new amapFile.AMapWX({key:'040d154a143d6d788ffec62f611b28b7'});
+        var myAmapFun = new amapFile.AMapWX({key});
         myAmapFun.getPoiAround({
             querykeywords: '地铁站',
             success: function(data){
               console.log(data);
-              const mapData = data.poisData.filter(item => {
-                // const latitude1 = item.location.split(',')[1];
-                // const longitude1 = item.location.split(',')[0];
-                // const distance = util.getDistance(latitude1, longitude1, latitude, longitude);
-                // console.log(distance);
-                return item.distance < 1000 * 2;
+              const mapData = data.poisData.filter(item => (item.distance < 1000 * 2)).map(item => {
+                  return {
+                      name: item.name,
+                      address: item.address,
+                      distance: item.distance > 500 ? parseInt(item.distance / 10) / 100 + 'km' : item.distance + 'm'
+                  }
               })
               console.log(mapData);
               that.setData({
                 traffic: mapData
+              })
+            },
+            fail: function(info){
+              //失败回调
+              console.log(info)
+            }
+        });
+        myAmapFun.getPoiAround({
+            querykeywords: '美食',
+            success: function(data){
+              console.log(data);
+              const mapData = data.poisData.filter(item => (item.distance < 1000 * 2)).map(item => {
+                  return {
+                      name: item.name,
+                      address: item.address,
+                      distance: item.distance > 500 ? parseInt(item.distance / 10) / 100 + 'km' : item.distance + 'm'
+                  }
+              })
+              console.log(mapData);
+              that.setData({
+                food: mapData
               })
             },
             fail: function(info){

@@ -12,18 +12,40 @@
         <view class="house-detail__item">
             <checkbox-group class="create-check__group clearfix" name="type">
                 <label class="create-checkbox" wx:for="{{showitem.type}}" wx:key="{{item}}">
-                    <checkbox  value="{{item}}" checked="{{item}}"/>{{item}}
+                    <checkbox value="{{item}}" checked="{{item}}" />{{item}}
                 </label>
             </checkbox-group>
         </view>
-        <view wx:for="{{traffic}}" wx:key="{{item}}">
-            {{item.distance}}m
-            {{item.address}}
-            {{item.name}}
+        <view class="swiper-tab">
+            <view class="swiper-tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="clickTab">交通</view>
+            <view class="swiper-tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="clickTab">美食</view>
+            <view class="swiper-tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="clickTab">图片</view>
         </view>
-        <view bind:tap="handleCamera" class="house-img__add">添加</view>
-        <block wx:for="{{imagesList}}" wx:key="{{item}}">
-            <image class="house-img-item" mode="widthFix" src="{{item}}"></image>
-        </block>
+        <swiper class="detail-tab" current="{{currentTab}}" duration="300" bindchange="swiperTab">
+            <swiper-item>
+                <view>
+                    <view wx:for="{{traffic}}" wx:key="{{item}}" class="traffic">
+                        <span class="tab-item">{{item.name}}</span>
+                        <span class="tab-item-right">{{item.distance}}</span>
+                    </view>
+                </view>
+            </swiper-item>
+            <swiper-item>
+                <view>
+                    <view wx:for="{{food}}" wx:key="{{item}}" class="traffic">
+                        <span class="tab-item">{{item.name}}</span>
+                        <span class="tab-item-right">{{item.distance}}</span>
+                    </view>
+                </view>
+            </swiper-item>
+            <swiper-item>
+                <view>
+                    <block wx:for="{{imagesList}}" wx:key="{{item}}">
+                        <image class="house-img-item" mode="widthFix" src="{{item}}"></image>
+                    </block>
+                </view>
+            </swiper-item>
+        </swiper>
+        <view bind:tap="handleCamera" class="house-img__add">添加照片</view>
     </view>
 </view>
