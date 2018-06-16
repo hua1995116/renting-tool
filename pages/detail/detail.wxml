@@ -18,30 +18,18 @@
         </view>
         <view class="swiper-tab">
             <view class="swiper-tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="clickTab">交通</view>
-            <view class="swiper-tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="clickTab">美食</view>
-            <view class="swiper-tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="clickTab">图片</view>
+            <view class="swiper-tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="clickTab">图片</view>
         </view>
         <swiper class="detail-tab" current="{{currentTab}}" duration="300" bindchange="swiperTab">
             <swiper-item>
                 <view>
-                    <view wx:for="{{traffic}}" wx:key="{{item}}" class="traffic">
-                        <span class="tab-item">{{item.name}}</span>
-                        <span class="tab-item-right">{{item.distance}}</span>
-                    </view>
+                    <map class="map" longitude="{{showitem.longitude}}" latitude="{{showitem.latitude}}" scale="14" show-location="true" markers="{{markers}}"></map>
                 </view>
             </swiper-item>
             <swiper-item>
-                <view>
-                    <view wx:for="{{food}}" wx:key="{{item}}" class="traffic">
-                        <span class="tab-item">{{item.name}}</span>
-                        <span class="tab-item-right">{{item.distance}}</span>
-                    </view>
-                </view>
-            </swiper-item>
-            <swiper-item>
-                <view>
+                <view class="house-item-list">
                     <block wx:for="{{imagesList}}" wx:key="{{item}}">
-                        <image class="house-img-item" mode="widthFix" src="{{item}}"></image>
+                        <image class="house-img-item" mode="widthFix" src="{{item}}" mode="aspectFit"></image>
                     </block>
                 </view>
             </swiper-item>

@@ -12,6 +12,7 @@ Page({
         traffic: [],
         currentTab: 0,
         food: [],
+        markers: [],
     },
     
     onShow() {
@@ -75,48 +76,40 @@ Page({
         const key = '040d154a143d6d788ffec62f611b28b7'
 
         var myAmapFun = new amapFile.AMapWX({key});
+        const markers = [];
         myAmapFun.getPoiAround({
             querykeywords: '地铁站',
+            location: `${longitude},${latitude}`,
             success: function(data){
-              console.log(data);
-              const mapData = data.poisData.filter(item => (item.distance < 1000 * 2)).map(item => {
-                  return {
-                      name: item.name,
-                      address: item.address,
-                      distance: item.distance > 500 ? parseInt(item.distance / 10) / 100 + 'km' : item.distance + 'm'
-                  }
-              })
-              console.log(mapData);
-              that.setData({
-                traffic: mapData
-              })
+            //   console.log(data);
+                markers.push({
+                    id: 'my',
+                    width: 20,
+                    height: 20,
+                    latitude: latitude,
+                    longitude: longitude,
+                    iconPath: "./images/location.png"
+                })
+                data.markers.map(item => {
+                    markers.push({
+                        id: item.id,
+                        width: 20,
+                        height: 20,
+                        longitude: item.longitude,
+                        latitude: item.latitude,
+                        iconPath: './images/car.png'
+                    });
+                })
+                that.setData({
+                    markers
+                })
             },
             fail: function(info){
               //失败回调
               console.log(info)
             }
         });
-        myAmapFun.getPoiAround({
-            querykeywords: '美食',
-            success: function(data){
-              console.log(data);
-              const mapData = data.poisData.filter(item => (item.distance < 1000 * 2)).map(item => {
-                  return {
-                      name: item.name,
-                      address: item.address,
-                      distance: item.distance > 500 ? parseInt(item.distance / 10) / 100 + 'km' : item.distance + 'm'
-                  }
-              })
-              console.log(mapData);
-              that.setData({
-                food: mapData
-              })
-            },
-            fail: function(info){
-              //失败回调
-              console.log(info)
-            }
-        })
+        
     },
     fetch(openid, houseId) {
         const that = this;
