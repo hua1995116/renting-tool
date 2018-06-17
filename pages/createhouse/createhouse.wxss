@@ -72,3 +72,15 @@
 .hover-btn-tran {
     background: rgb(12, 226, 41);
 }
+
+.house-img__add {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 100rpx;
+    border-top: 1rpx solid #ffd845;
+    background: #ffd7459a;
+    color: #333;
+    text-align: center;
+    line-height: 100rpx;
+}

@@ -36,7 +36,8 @@
             </checkbox-group>
             <view class="clearfix"></view>
         </view>
-        <button class="create-submit" formType="submit" hover-class="hover-btn-tran">创建</button>
+        <!-- <button class="create-submit" formType="submit" hover-class="hover-btn-tran">创建</button> -->
+        <button class="house-img__add" formType="submit" hover-class="hover-btn-tran">创建</button>
     </form>
     
 </view>
