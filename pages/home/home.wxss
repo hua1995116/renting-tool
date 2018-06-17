@@ -193,12 +193,20 @@
 
 .create-item {
     position: fixed;
-    width: 150rpx;
-    height: 150rpx;
+    width: 130rpx;
+    height: 130rpx;
     right: 60rpx;
     bottom: 60rpx;
+    background-color: #ffd845;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30pt;
+    color: #fff;
+    box-shadow: 1px 1px 8px 1px #a39696;
 }
 .create-item image {
-    width: 150rpx;
-    height: 150rpx;
+    width: 65rpx;
+    height: 65rpx;
 }

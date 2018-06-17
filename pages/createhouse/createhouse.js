@@ -111,8 +111,8 @@ Page({
       list.push(formData);
       wx.setStorageSync('create_list', JSON.stringify(list));
     }
-    wx.navigateTo({
-      url: '../home/home'
+    wx.navigateBack({
+      delta: 1
     })
   }
 })

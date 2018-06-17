@@ -1,39 +1,43 @@
 <view class="detail-page">
     <view class="house-detail__container">
-        <view class="house-detail__item">
-            地址:{{showitem.location}}
-        </view>
-        <view class="house-detail__item">
-            电话:{{showitem.iphone}}
-        </view>
-        <view class="house-detail__item">
-            日期:{{showitem.date}}
-        </view>
-        <view class="house-detail__item">
-            <checkbox-group class="create-check__group clearfix" name="type">
-                <label class="create-checkbox" wx:for="{{showitem.type}}" wx:key="{{item}}">
-                    <checkbox value="{{item}}" checked="{{item}}" />{{item}}
-                </label>
-            </checkbox-group>
-        </view>
-        <view class="swiper-tab">
-            <view class="swiper-tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="clickTab">交通</view>
-            <view class="swiper-tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="clickTab">图片</view>
-        </view>
         <swiper class="detail-tab" current="{{currentTab}}" duration="300" bindchange="swiperTab">
-            <swiper-item>
-                <view>
-                    <map class="map" longitude="{{showitem.longitude}}" latitude="{{showitem.latitude}}" scale="14" show-location="true" markers="{{markers}}"></map>
-                </view>
-            </swiper-item>
-            <swiper-item>
-                <view class="house-item-list">
-                    <block wx:for="{{imagesList}}" wx:key="{{item}}">
-                        <image class="house-img-item" mode="widthFix" src="{{item}}" mode="aspectFit"></image>
-                    </block>
-                </view>
+            <swiper-item wx:for="{{imagesList}}" wx:key="{{item}}">
+                <image class="house-img-item" src="{{item}}" mode="aspectFill"></image>
             </swiper-item>
         </swiper>
-        <view bind:tap="handleCamera" class="house-img__add">添加照片</view>
+        <view class="house-detail__message">
+            <view class="detail-title">
+                房租信息
+            </view>
+            <view class="house-detail__list">
+                <view class="house-detail__item">
+                    地址:{{showitem.location}}
+                </view>
+                <view class="house-detail__item">
+                    电话:{{showitem.iphone}}
+                </view>
+                <view class="house-detail__item">
+                    日期:{{showitem.date}}
+                </view>
+                
+            </view>
+            <view class="house-detail__type">
+                <view wx:for="{{showitem.type}}" class="type-item">
+                    <image src="./images/right.png"></image>
+                    {{item}}
+                </view>
+            </view>
+            <view class="clear"></view>
+        </view>
+       
+        <view class="house-detail__message">
+            <view class="detail-title">
+                地图信息
+            </view>
+            <map class="map" longitude="{{showitem.longitude}}" latitude="{{showitem.latitude}}" scale="14" show-location="true" markers="{{markers}}"></map>
+        </view>
+        
+        
+        <cover-view bind:tap="handleCamera" class="house-img__add">添加照片</cover-view>
     </view>
 </view>
