@@ -1,6 +1,6 @@
 <view class="detail-page">
     <view class="house-detail__container">
-        <swiper class="detail-tab" current="{{currentTab}}" duration="300" bindchange="swiperTab">
+        <swiper class="detail-tab" indicator-dots="true" duration="300" bindchange="swiperTab">
             <swiper-item wx:for="{{imagesList}}" wx:key="{{item}}">
                 <image class="house-img-item" src="{{item}}" mode="aspectFill"></image>
             </swiper-item>
@@ -12,9 +12,11 @@
             <view class="house-detail__list">
                 <view class="house-detail__item">
                     地址:{{showitem.location}}
+                        <image class="copy" data-text="{{showitem.location}}" bind:tap="handleCopy" src="./images/copy.png"></image>
                 </view>
                 <view class="house-detail__item">
                     电话:{{showitem.iphone}}
+                    <image class="copy" data-text="{{showitem.iphone}}" bind:tap="handleCopy" src="./images/copy.png"></image>
                 </view>
                 <view class="house-detail__item">
                     日期:{{showitem.date}}

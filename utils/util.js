@@ -29,7 +29,13 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+const randomImage = () => {
+  const num = 201710271402455 + parseInt(195 * Math.random()) + 1;
+  return `http://cloud.qiufengh.com/image/room${num}.jpg`
+}
+
 module.exports = {
   formatTime,
   getDistance,
+  randomImage
 }

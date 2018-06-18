@@ -120,10 +120,19 @@ Page({
               houseId
             },
             success: function(res) {
-              const {data} = res.data;
-              that.setData({
-                imagesList: data,
-              })
+                const {data} = res.data;
+                if(data.length > 0) {
+                    that.setData({
+                        imagesList: data,
+                    })
+                } else {
+                    const list  = [];
+                    list.push(util.randomImage());
+                    list.push(util.randomImage());
+                    that.setData({
+                        imagesList: list
+                    })
+                }
             },
             fail: function() {
             }
@@ -131,6 +140,19 @@ Page({
     },
     formatListData(list) {
         return list.map(item => JSON.parse(item))
+    },
+    handleCopy (e) {
+        const text = e.currentTarget.dataset.text;
+        wx.setClipboardData({
+            data: text,
+            success: function(res) {
+                wx.showToast({
+                    title: '复制成功',
+                    icon: 'success',
+                    duration: 2000
+                })
+            }
+          })
     },
     handleCamera() {
         // console.log(this.data.showitem);

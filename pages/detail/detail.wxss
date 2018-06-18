@@ -98,6 +98,11 @@
     line-height: 48rpx;
 }
 
+.copy {
+    width:35rpx;
+    height:35rpx;
+}
+
 .house-detail__type {
     width: 100%;
     box-sizing: border-box;
