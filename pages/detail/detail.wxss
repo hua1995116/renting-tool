@@ -72,7 +72,6 @@
 }
 
 .detail-title {
-    width: 100%;
     box-sizing: border-box;
     margin: 0 30rpx 10rpx;
     height:40rpx;
@@ -85,7 +84,6 @@
 }
 
 .house-detail__list{
-    width: 100%;
     box-sizing: border-box;
     margin: 0 30rpx;
     column-count: 2;

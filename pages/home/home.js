@@ -31,6 +31,14 @@ Page({
       }
     })
     if(!openid) {
+      wx.getUserInfo({
+        success: function(res) {
+          that.handlegetUser(res);
+        },
+        fail: function(e){
+          console.log(e);
+        }
+      }) 
       // this.handleLogin();
     } else {
       this.setData({
@@ -49,7 +57,6 @@ Page({
             listData: data,
           })
           wx.setStorageSync('create_list', JSON.stringify(data));
-          // console.log(res);
         },
         fail: function() {
           let create_list = wx.getStorageSync('create_list');
@@ -95,15 +102,7 @@ Page({
         }
       }
     });
-    // wx.getUserInfo({
-    //   success: function(res) {
-    //     console.log(res);
-    //     that.handleUserInfo(res);
-    //   },
-    //   fail: function(e){
-    //     console.log(e);
-    //   }
-    // }) 
+    
   },
   handleUserInfo(res) {
     const that = this;
